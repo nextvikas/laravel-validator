@@ -1,7 +1,7 @@
 {
-    "name": "laratalks/validator",
+    "name": "nextvikas/validator",
     "description": "Laravel Validation supports multiple scenarios",
-    "keywords": ["laravel", "validation", "validator", "laratalks"],
+    "keywords": ["laravel", "validation", "validator", "nextvikas"],
     "type": "library",
     "license": "GPL",
     "authors": [
@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Laratalks\\Validator\\": "src/"
+            "Nextvikas\\Validator\\": "src/"
         }
     },
     "require": {

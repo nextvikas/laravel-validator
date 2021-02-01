@@ -1,5 +1,5 @@
 <?php 
-namespace Laratalks\Validator\Exceptions;
+namespace Nextvikas\Validator\Exceptions;
 
 class ValidationException extends \Exception implements ValidationExceptionInterface {
 

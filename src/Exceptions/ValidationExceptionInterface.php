@@ -1,5 +1,5 @@
 <?php
-namespace Laratalks\Validator\Exceptions;
+namespace Nextvikas\Validator\Exceptions;
 
 interface ValidationExceptionInterface {
 

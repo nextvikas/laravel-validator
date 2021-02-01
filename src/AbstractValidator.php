@@ -1,10 +1,10 @@
-<?php namespace Laratalks\Validator;
+<?php namespace Nextvikas\Validator;
 
 use Illuminate\Contracts\Foundation\Application;
-use Laratalks\Validator\Exceptions;
+use Nextvikas\Validator\Exceptions;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Factory;
-use Laratalks\Validator\Exceptions\ValidationException;
+use Nextvikas\Validator\Exceptions\ValidationException;
 
 abstract class AbstractValidator
 {

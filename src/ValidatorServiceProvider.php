@@ -1,5 +1,5 @@
 <?php
-namespace Laratalks\Validator;
+namespace Nextvikas\Validator;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class ValdiatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Laratalks\Validator\Validator', function ($app) {
+        $this->app->singleton('Nextvikas\Validator\Validator', function ($app) {
             return new Validator($app['validator'], $app);
         });
     }

@@ -1,5 +1,5 @@
 <?php
-namespace Laratalks\Validator;
+namespace Nextvikas\Validator;
 
 class Validator extends AbstractValidator
 {
