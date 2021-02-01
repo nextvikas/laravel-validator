@@ -12,8 +12,8 @@
         }
     },
     "require": {
-        "illuminate/validation": "^5.4 || ^6.0",
-        "illuminate/contracts": "^5.4 || ^6.0"
+        "illuminate/validation": "^5.4 || ^8.0",
+        "illuminate/contracts": "^5.4 || ^8.0"
     },
     "minimum-stability": "dev"
 }
