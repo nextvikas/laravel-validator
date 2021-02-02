@@ -5,6 +5,8 @@ use Nextvikas\Validator\Exceptions;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Factory;
 use Nextvikas\Validator\Exceptions\ValidationException;
+use Illuminate\Support\Str;
+use Redirect;
 
 abstract class AbstractValidator
 {
@@ -99,9 +101,10 @@ abstract class AbstractValidator
 
         if ($this->exceptionStatus) {
             if ($this->validated->fails()) {
-                $e = new ValidationException($this->getFailMessage(), static::$statusCode, static::EXCEPTION_KEY);
-                $e->setErrors($this->validated->messages());
-                throw $e;
+                return \Redirect::back()->withErrors($this->validated->messages())->withInput();
+                //$e = new ValidationException($this->getFailMessage(), static::$statusCode, static::EXCEPTION_KEY);
+                //$e->setErrors($this->validated->messages());
+                //throw $e;
             }
         }
 
@@ -160,7 +163,7 @@ abstract class AbstractValidator
     public function setScenario($scenario)
     {
         $this->scenario = $scenario;
-        $scenarioRules = camel_case($scenario . 'Rules');
+        $scenarioRules = Str::camel($scenario);
 
         if ($this->{$scenarioRules} !== null) {
             $this->rules = $this->{$scenarioRules};
@@ -200,6 +203,4 @@ abstract class AbstractValidator
 
         return $this;
     }
-
-
 }
