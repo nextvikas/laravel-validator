@@ -1,4 +1,5 @@
-<?php namespace Nextvikas\Validator;
+<?php 
+namespace Nextvikas\Validator;
 
 use Illuminate\Contracts\Foundation\Application;
 use Nextvikas\Validator\Exceptions;
@@ -12,13 +13,6 @@ abstract class AbstractValidator
 {
 
     const EXCEPTION_KEY = 'messages.validation_failed';
-
-    /**
-     * Http status code
-     *
-     * @var int
-     */
-    protected static $statusCode = 422;
 
     /**
      * Rules to check for
@@ -41,6 +35,15 @@ abstract class AbstractValidator
      */
     protected $messages = [];
 
+
+    /**
+     * Postdata to append
+     *
+     * @var array
+     */
+    protected $postdata = [];
+
+
     /**
      * @var Factory
      */
@@ -56,7 +59,7 @@ abstract class AbstractValidator
      *
      * @var bool
      */
-    protected $exceptionStatus = true;
+    protected $exceptionStatus = false;
 
     /**
      * Scenario
@@ -82,29 +85,28 @@ abstract class AbstractValidator
     /**
      * Validate the data given with some optional rules and messages
      *
-     * @param array $data
+     * @param object $data
      * @param null $rules
      * @param array $messages
      * @param array $customAttributes
      * @return Validator|\Illuminate\Validation\Validator
      * @throws ValidationException
      */
-    public function validate(array $data, $rules = null, array $messages = [], array $customAttributes = [])
+    public function validate(object $data, $rules = null, array $messages = [], array $customAttributes = [])
     {
         $rules = $rules ?: $this->getRules();
 
         $messages = empty($messages) ? $this->messages : $messages;
 
+        $this->postdata = $data->post();
+
         $customAttributes = empty($customAttributes) ? $this->customAttributes : $customAttributes;
 
-        $this->validated = $this->validatorFactory->make($data, $rules, $messages, $customAttributes);
+        $this->validated = $this->validatorFactory->make($data->all(), $rules, $messages, $customAttributes);
 
         if ($this->exceptionStatus) {
             if ($this->validated->fails()) {
                 return \Redirect::back()->withErrors($this->validated->messages())->withInput();
-                //$e = new ValidationException($this->getFailMessage(), static::$statusCode, static::EXCEPTION_KEY);
-                //$e->setErrors($this->validated->messages());
-                //throw $e;
             }
         }
 
@@ -171,7 +173,17 @@ abstract class AbstractValidator
 
         return $this;
     }
-
+    public function getPostdata()
+    {
+        $res = [];
+        $scenario = $this->{$this->scenario};
+        if ($scenario !== null && is_array($scenario)) {
+            foreach ($scenario as $key => $value) {
+                $res[$key] = $this->postdata[$key];
+            }
+        }
+        return $res;
+    }
     protected function getRules()
     {
         return $this->rules;
@@ -203,4 +215,6 @@ abstract class AbstractValidator
 
         return $this;
     }
+
+
 }
