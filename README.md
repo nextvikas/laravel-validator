@@ -21,7 +21,7 @@ use Nextvikas\Validator\AbstractValidator;
 class UserValidator extends AbstractValidator
 {
 
-    protected $registrationRules = [
+    protected $registration = [
         'first_name' => ['required'],
         'last_name' => ['required'],
         'username' => ['required'],
@@ -30,7 +30,7 @@ class UserValidator extends AbstractValidator
     ];
 
 
-    protected $activationRules = [
+    protected $activation = [
         'id' => ['required', 'exists:users'],
         'token' => ['required', 'min:64']
     ];
