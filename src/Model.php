@@ -1,10 +1,10 @@
 <?php
 namespace Nextvikas\Validator;
 
-use Illuminate\Database\Eloquent\Model as oldModel;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Schema;
 
-class Model extends oldModel
+class Model extends Authenticatable
 {
     public function getFillable()
     {
