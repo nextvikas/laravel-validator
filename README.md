@@ -1,4 +1,9 @@
-# Validator
+# Laravel Validator
+
+[![Total Downloads](https://img.shields.io/packagist/dt/nextvikas/validator.svg?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/nextvikas/validator)
+[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![GitHub tag](https://img.shields.io/badge/composer-laravel--extension-orange.svg)]()
+
 Simple validator library for Laravel framework with multiple scenarios. By using this package, you write your validator once
 and use every where and moderate your Domain rules easily.
 
